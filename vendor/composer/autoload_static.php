@@ -4,12 +4,13 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit28af0a68ee06c4190fdd551d6662a793
+class ComposerStaticInit9921e0c09700a98f78d202ed90a701df
 {
     public static $prefixLengthsPsr4 = array (
         'D' => 
         array (
             'DigitalStar\\vk_api\\' => 19,
+            'DiDom\\' => 6,
         ),
     );
 
@@ -17,6 +18,10 @@ class ComposerStaticInit28af0a68ee06c4190fdd551d6662a793
         'DigitalStar\\vk_api\\' => 
         array (
             0 => __DIR__ . '/..' . '/digitalstars/simplevk/src',
+        ),
+        'DiDom\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/imangazaliev/didom/src/DiDom',
         ),
     );
 
@@ -27,9 +32,9 @@ class ComposerStaticInit28af0a68ee06c4190fdd551d6662a793
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit28af0a68ee06c4190fdd551d6662a793::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit28af0a68ee06c4190fdd551d6662a793::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit28af0a68ee06c4190fdd551d6662a793::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit9921e0c09700a98f78d202ed90a701df::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit9921e0c09700a98f78d202ed90a701df::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit9921e0c09700a98f78d202ed90a701df::$classMap;
 
         }, null, ClassLoader::class);
     }

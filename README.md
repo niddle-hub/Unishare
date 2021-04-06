@@ -27,7 +27,7 @@
 </ol>
 <h2>Зависимости</h2>
 <ul>
-<li><a href="https://simplehtmldom.sourceforge.io">PHP Simple HTML DOM Parser</a></li>
+<li><a href="https://github.com/Imangazaliev/DiDOM">imangazaliev/didom</a></li>
 <li><a href="https://redbeanphp.com/index.php">RedBeanPHP</a></li>
 <li><a href="https://github.com/digitalstars/simplevk">digitalstars/simplevk</a></li>
 </ul>

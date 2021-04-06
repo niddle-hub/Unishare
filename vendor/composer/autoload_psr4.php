@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'DigitalStar\\vk_api\\' => array($vendorDir . '/digitalstars/simplevk/src'),
+    'DiDom\\' => array($vendorDir . '/imangazaliev/didom/src/DiDom'),
 );
