@@ -1,7 +1,6 @@
 <?php
 
 declare(strict_types=1);
-
 require_once('../vendor/autoload.php');
 
 use DiDom\Document;
@@ -9,71 +8,54 @@ use DiDom\Exceptions\InvalidSelectorException;
 
 class SiteParser
 {
+    /*
+     * TODO:
+     *  - Сделать формирование расписания по 3 сценариям: сегодня, завтра, неделя
+     *  - Сделать перевод для вводимой даты, по типу: сегодня => today, завтра => tomorrow
+     */
 
     public function getSchedule(string $group_name, string $date = ''): string
-    {
-        /*
-         * TODO:
-         *  - Преобразовать полученный массив в строку с расписанием
-         *  - Сделать формирование расписания по 3 сценариям: сегодня, завтра, неделя
-         *  - Сделать перевод для вводимой даты, по типу: сегодня => today, завтра => tomorrow
-         */
-
-//        $schedule = $this->makeSchedule($group_name);
-
-//        if ($date === '') {
-//            //неделя
-//            return 'week';
-//        }
-//
-//        try {
-//            //сегодня, завтра
-//            $at = new DateTime($date);
-//            $day = $at->format('d');
-//            return 'day';
-//        } catch (Exception $e) {
-//            return 'Неправильный формат даты';
-//        }
-
-        return '';
-    }
-
-    private function makeSchedule(string $group_name): array
     {
         $document = new Document(
             'https://uspu.ru/education/eios/schedule/?group_name=' . $group_name,
             true
         );
 
-        $content = [];
-        try {
-            $rasp_item = $document->find('.rasp-item');
-            foreach ($rasp_item as $i => $item) {
+        $message = "Группа: $group_name\n";
 
-                $rasp_day = $item->find('.rasp-day');
-                foreach ($rasp_day as $day) {
-                    $content['rasp-day'][$i] = $day->text();
-                }
+        try {
+            $updated = 'updated';
+            //$rasp_update = $document->find('.rasp-update')[0]->text();
+            $message .= $updated . "\n";
+
+            $rasp_item = $document->find('.rasp-item');
+            foreach ($rasp_item as $item) {
+
                 $rasp_week = $item->find('.rasp-week');
                 foreach ($rasp_week as $week) {
-                    $content['rasp-week'][$i] = $week->text();
+                    $message .= str_repeat('.', 25) . "\n" . $week->text() . " ";
+                }
+                $rasp_day = $item->find('.rasp-day');
+                foreach ($rasp_day as $day) {
+                    $message .= $day->text() . "\n" . str_repeat('.', 25);
                 }
                 $rasp_para = $item->find('.rasp-para');
                 foreach ($rasp_para as $para) {
-                    $para_time = $para->find('.para-time');
-                    foreach ($para_time as $time) {
-                        $content['para-time'][$i][] = $time->text();
-                    }
-                    $rasp_desc = $para->find('.rasp-desc');
-                    foreach ($rasp_desc as $desc) {
-                        $content['rasp-desc'][$i][] = trim($desc->text());
-                    }
+                    $message .= $para->text();
                 }
             }
-
-            return $content;
-        } catch (InvalidSelectorException $e) {
-            return ['ERROR Code' => $e->getCode(), 'ERROR Message' => $e->getMessage()];
+            if ($date === '') {
+                return nl2br($message);
+            }
+            try {
+                $at = new DateTime($date);
+                $day = $at->format('d');
+                return "Расписание на " . $day;
+            } catch (Exception) {
+                return 'Неправильный формат даты';
+            }
+        } catch (InvalidSelectorException) {
+            return 'Чёта не получилось';
         }
     }
 }
