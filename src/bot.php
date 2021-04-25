@@ -3,6 +3,7 @@
 use DigitalStar\vk_api\vk_api;
 
 require 'SiteParser.php';
+require 'User.php';
 require 'config.php';
 
 $vk = vk_api::create(TOKEN, VERSION)->setConfirm(CONFIRM);
