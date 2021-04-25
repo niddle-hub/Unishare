@@ -106,9 +106,9 @@ if ($type === 'message_new') {
         $vk->reply('скоро');
     }
 
-    if ($payload === 'week' || mb_strtolower('неделя')){
+    if ($payload === 'week' || mb_strtolower($message) === 'неделя'){
         $schedule = $SiteParser->getSchedule($User->getData()['group']);
-        $vk->reply($schedule . " first moment " . smile\fire);
+        $vk->reply($schedule);
     }
 
     if ($payload === 'date') {
@@ -121,7 +121,7 @@ if ($type === 'message_new') {
 
     if ($payload !== 'cancel' && $User->getData()['waitdate']) {
         $schedule = $SiteParser->getSchedule($User->getData()['group'], $message);
-        $vk->reply($schedule . " second moment " . smile\fire);
+        $vk->reply($schedule);
     }
 
     if ($payload !== 'back' && $User->getData()['waitgroup']) {
