@@ -3,6 +3,7 @@
         "imangazaliev/didom": "^1.16",
         "digitalstars/simplevk": "^2.14",
         "ext-dom": "*",
-        "ext-libxml": "*"
+        "ext-libxml": "*",
+        "ext-mbstring": "*"
     }
 }

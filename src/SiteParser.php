@@ -10,7 +10,7 @@ class SiteParser
 {
     /*
      * TODO:
-     *  - Сделать формирование расписания по 3 сценариям: сегодня, завтра, неделя
+     *  - Сделать формирование расписания по сценариям: сегодня, завтра
      *  - Сделать перевод для вводимой даты, по типу: сегодня => today, завтра => tomorrow
      */
 
@@ -57,5 +57,15 @@ class SiteParser
         } catch (InvalidSelectorException) {
             return 'Чёта не получилось';
         }
+    }
+
+    public function getGroupList(): array
+    {
+        return ['Все группы доступны, напиши её в формате хххх-1111'];
+    }
+
+    public function loadPageFromCache(): Document
+    {
+
     }
 }
