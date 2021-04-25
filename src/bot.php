@@ -1,6 +1,7 @@
 <?php
 
 use DigitalStar\vk_api\vk_api;
+use DigitalStar\vk_api\VkApiException;
 
 require 'SiteParser.php';
 require 'User.php';
@@ -107,7 +108,11 @@ if ($type === 'message_new') {
 
     if ($payload === 'week' || mb_strtolower($message) === 'неделя'){
         $schedule = $SiteParser->getSchedule($User->getData()['group']);
-        $vk->reply($schedule);
+        try {
+            $vk->reply($schedule);
+        } catch (VkApiException $e) {
+            $vk->reply("too long message: " . count($message));
+        }
     }
 
     if ($payload === 'date') {
