@@ -59,11 +59,6 @@ class SiteParser
         }
     }
 
-    public function getGroupList(): array
-    {
-        return ['Все группы доступны, напиши её в формате хххх-1111'];
-    }
-
     public function loadPageFromCache(): Document|null
     {
         return null;

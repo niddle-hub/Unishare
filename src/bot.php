@@ -85,12 +85,11 @@ if ($type === 'message_new') {
         $loadedUser = $User->load();
         $loadedUser->waitgroup = true;
         $User->update($loadedUser);
-        $groups = $SiteParser->getGroupList();
         $vk->sendButton(
             $id,
             smile\pencil . " Напиши свою группу!\n" .
-            smile\tablet . " Список доступных групп:\n".
-            implode('\n', $groups), [[$btnBack]]
+            smile\tablet . " Доступны все группы:\n" .
+            "Формат записи: исит-0000 или ми-1111 или как там ваша гурппа назвается...", [[$btnBack]]
         );
     }
 
@@ -125,15 +124,14 @@ if ($type === 'message_new') {
     }
 
     if ($payload !== 'back' && $User->getData()['waitgroup']) {
-        $GroupList = $SiteParser->getGroupList();
-        if (in_array($message, $GroupList, true)) {
+        if (is_string($message)) {
             $loadedUser = $User->load();
             $loadedUser->group = $message;
             $loadedUser->waitgroup = false;
             $User->update($loadedUser);
             $vk->sendButton($id, smile\greenmark . ' Ваша группа: ' . $message, [[$btnTable, $btnNews, $btnGroup]]);
         } else {
-            $vk->reply(smile\redcross . ' Группа ' . $message . ' не найдена!');
+            $vk->reply("Нужна строка");
         }
     }
 }
