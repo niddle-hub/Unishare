@@ -108,7 +108,7 @@ if ($type === 'message_new') {
 
     if ($payload === 'week' || mb_strtolower('неделя')){
         $schedule = $SiteParser->getSchedule($User->getData()['group']);
-        $vk->reply($schedule);
+        $vk->reply($schedule . " first moment " . smile\fire);
     }
 
     if ($payload === 'date') {
@@ -121,7 +121,7 @@ if ($type === 'message_new') {
 
     if ($payload !== 'cancel' && $User->getData()['waitdate']) {
         $schedule = $SiteParser->getSchedule($User->getData()['group'], $message);
-        $vk->reply($schedule);
+        $vk->reply($schedule . " second moment " . smile\fire);
     }
 
     if ($payload !== 'back' && $User->getData()['waitgroup']) {
