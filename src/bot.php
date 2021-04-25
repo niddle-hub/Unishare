@@ -111,7 +111,7 @@ if ($type === 'message_new') {
         try {
             $vk->reply($schedule);
         } catch (VkApiException $e) {
-            $vk->reply("too long message: " . count($message));
+            $vk->reply("too long message: " . mb_strlen($message));
         }
     }
 
