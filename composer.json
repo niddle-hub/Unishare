@@ -1,9 +1,23 @@
 {
+    "name": "niddle/unishare",
+    "description": "Minimum tools to work with parsing and API vk.com",
+    "keywords": ["php", "vk", "api", "library", "parsing"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniil A.",
+            "email": "haus2013@yandex.ru"
+        }
+    ],
     "require": {
-        "imangazaliev/didom": "^1.16",
-        "digitalstars/simplevk": "^2.14",
+        "ext-mbstring": "*",
         "ext-dom": "*",
         "ext-libxml": "*",
-        "ext-mbstring": "*"
+        "imangazaliev/didom": "^1.16",
+        "digitalstars/simplevk": "^2.14"
+    }
+    ,
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
     }
 }
