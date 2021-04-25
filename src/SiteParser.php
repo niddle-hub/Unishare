@@ -45,7 +45,7 @@ class SiteParser
                 }
             }
             if ($date === '') {
-                return nl2br($message);
+                return $message;
             }
             try {
                 $at = new DateTime($date);
@@ -64,8 +64,8 @@ class SiteParser
         return ['Все группы доступны, напиши её в формате хххх-1111'];
     }
 
-    public function loadPageFromCache(): Document
+    public function loadPageFromCache(): Document|null
     {
-
+        return null;
     }
 }
