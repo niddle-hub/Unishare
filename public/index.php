@@ -7,7 +7,7 @@ function test()
         file_put_contents('../htdocs/ya.html', $file);
         readfile('../htdocs/ya.html');
     } catch (exception $e) {
-        echo $e->getMessage();
+        echo "Ошибка: " . $e->getMessage();
     }
 }
 
