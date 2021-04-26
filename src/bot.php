@@ -1,7 +1,6 @@
 <?php
 
 use DigitalStar\vk_api\vk_api;
-use DigitalStar\vk_api\VkApiException;
 
 require 'SiteParser.php';
 require 'User.php';
@@ -53,11 +52,11 @@ if ($type === 'message_new') {
         $loadedUser = $User->load();
         $loadedUser->waitdate = false;
         $User->update($loadedUser);
-        $vk->sendButton($id, 'Меню', [[$btnToday, $btnTomorrow, $btnWeek, $btnDate], [$btnBack]]);
+        $vk->sendButton($id, 'Меню', [[$btnToday, $btnTomorrow], [ $btnWeek, $btnDate], [$btnBack]]);
     }
 
     if ($payload === 'table') {
-        $vk->sendButton($id, smile\orangediamond . $User->getData()['group'], [[$btnToday, $btnTomorrow, $btnWeek, $btnDate], [$btnBack]]);
+        $vk->sendButton($id, smile\orangediamond . $User->getData()['group'], [[$btnToday, $btnTomorrow], [ $btnWeek, $btnDate], [$btnBack]]);
     }
 
     if ($payload === 'news') {
@@ -108,10 +107,14 @@ if ($type === 'message_new') {
 
     if ($payload === 'week' || mb_strtolower($message) === 'неделя'){
         $schedule = $SiteParser->getSchedule($User->getData()['group']);
-        try {
+        if(mb_strlen($schedule) >= 4096)
+        {
+            $schedule_parts = str_split($schedule, 4096);
+            foreach ($schedule_parts as $part) {
+                $vk->reply($part);
+            }
+        } else {
             $vk->reply($schedule);
-        } catch (VkApiException $e) {
-            $vk->reply("too long message: " . mb_strlen($schedule));
         }
     }
 

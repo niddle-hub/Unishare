@@ -24,8 +24,8 @@ class SiteParser
         $message = "Группа: $group_name\n";
 
         try {
-            $updated = 'updated';
-            //$rasp_update = $document->find('.rasp-update')[0]->text();
+            $updated = "Обновлено: " . $document->find('.rasp-update')[0]->text() . " " .date('H:i');
+
             $message .= $updated . "\n";
 
             $rasp_item = $document->find('.rasp-item');
