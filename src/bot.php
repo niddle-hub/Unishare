@@ -21,7 +21,7 @@ $btnGroup = $vk->buttonText(smile\peoples . ' Группа', 'green', ['command'
 $btnToday = $vk->buttonText(smile\whitecircle . ' Сегодня', 'green', ['command' => 'today']);
 $btnTomorrow = $vk->buttonText(smile\blackcircle . ' Завтра', 'blue', ['command' => 'tomorrow']);
 $btnDate = $vk->buttonText(smile\calendar . ' Дата', 'white', ['command' => 'date']);
-$btnWeek = $vk->buttonText(smile\books . ' Неделя', 'white', ['command' => 'week']);
+$btnWeek = $vk->buttonText(smile\bluecircle . ' Неделя', 'white', ['command' => 'week']);
 $btnCancel = $vk->buttonText(smile\leftarrow . ' Назад', 'red', ['command' => 'cancel']);
 
 if ($type === 'message_new') {

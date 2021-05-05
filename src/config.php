@@ -14,6 +14,7 @@ namespace {
 namespace smile {
     const bell = '🔔';
     const blackcircle = '⚫';
+    const bluecircle = '🔵';
     const books = '📚';
     const calendar = '📅';
     const crossedbell = '🔕';
